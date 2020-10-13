@@ -21,21 +21,21 @@ function camelize(str) {
 }
 
 function log(mod,...p) {
-	p.unshift("["+mod.acronym+"]");
+	p.unshift("["+mod.abriv+"]");
 	console.debug(...p)
 }
 
-	function InitialiseMod({name,acronym,author}) {
+	function InitialiseMod({name,abriv,author}) {
 		console.log("[" + name + "] by " + author)
 		var mod = {
 			id:camelize(name),
-			acronym,
+			abriv,
 			name,
 			author
 		}
 		mod.log = log.bind(mod.id)
 		if(cardboard) {
-			mod = cardboard.regsiter(mod.id,mod);
+			mod = cardboard.register(mod.id,mod);
 		}
 	}
 	return {
