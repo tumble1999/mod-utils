@@ -33,7 +33,7 @@ function log(mod,...p) {
 			name,
 			author
 		}
-		mod.log = log.bind(mod)
+		mod.log = log.bind(self,mod)
 		if(cardboard) {
 			mod = cardboard.register(mod.id,mod);
 		}
