@@ -1,4 +1,3 @@
-window = window||unsafeWindow;
 var BCModUtils = (function() {
 	"use strict";
 
