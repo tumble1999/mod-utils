@@ -14,7 +14,7 @@ var mod = BCModUtils.InitialiseMod({
 
 mod.log("Hello World") //[T] Hello World
 
-BCModUtils.runIfDocLoaded(_=>{ //also runs if docuemnt already loaded
+BCModUtils.runIfDocLoaded(_=>{ //also runs if docuemnt already loaded. Returns a promise
 mod.log("Document Loaded")
 })
 
