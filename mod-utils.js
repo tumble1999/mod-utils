@@ -3,10 +3,10 @@ var BCModUtils = (function() {
 
 	function onDocumentLoaded() {
 		return new Promise((res,rej)=>{
-			if(document.readyState=="complete") {
+			if(document.readyState==="complete") {
 				res();
 			} else {
-				document.addEventListener("load",res)
+				window.addEventListener("load",res)
 			}
 		})
 	}
