@@ -37,10 +37,10 @@ function log(mod,...p) {
 }
 
 
-	function InitialiseMod({name,abriv,author}) {
+	function InitialiseMod({id,name,abriv,author}) {
 		console.log("[" + name + "] by " + author)
 		var mod = {
-			id:camelize(name),
+			id:camelize(id||name),
 			abriv,
 			name,
 			author
