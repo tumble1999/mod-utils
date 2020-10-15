@@ -20,6 +20,14 @@ function camelize(str) {
 	});
 }
 
+function mapArguments(keys,argv,defaultKey) {
+	if(!Array.isArray(keys)) keys =Object.keys(keys);
+	defaultKey = defaultKey||keys[0]
+	if(!Array.isArray(argv)) return argv;
+	if(argv.length==1) return {[defaultKey]:argv[0]}
+	return keys.reduce((obj,key,i)=>(obj[key]=argv[i],obj),{})
+}
+
 function log(mod,...p) {
 	p.unshift("["+mod.abriv+"]");
 	console.debug(...p)
@@ -42,6 +50,7 @@ function log(mod,...p) {
 	return {
 		InitialiseMod,
 		camelize,
-		runIfDocLoaded
+		runIfDocLoaded,
+		mapArguments
 	}
 })();
