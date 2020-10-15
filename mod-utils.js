@@ -1,15 +1,14 @@
 var BCModUtils = (function() {
 	"use strict";
 
-	async function runIfDocLoaded(func) {
-		if (document.readyState == "complete") {
-			return new Promise(async (resolve, reject) => {
-				window.addEventListener("load", async () => {
-					resolve(await func());
-				})
-			})
-		}
-		return await func();
+	function onDocumentLoaded() {
+		return new Promise((res,rej)=>{
+			if(document.readyState=="complete") {
+				res();
+			} else {
+				document.addEventListener("load",res)
+			}
+		})
 	}
 
 	
@@ -55,7 +54,8 @@ function log(mod,...p) {
 	return {
 		InitialiseMod,
 		camelize,
-		runIfDocLoaded,
+		onDocumentLoaded,
+		varDefined,
 		mapArguments
 	}
 })();
