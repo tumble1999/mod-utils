@@ -28,10 +28,15 @@ function mapArguments(keys,argv,defaultKey) {
 	return keys.reduce((obj,key,i)=>(obj[key]=argv[i],obj),{})
 }
 
+function varDefined(v) {
+	return typeof(v)!=="undefined"&&v;
+}
+
 function log(mod,...p) {
 	p.unshift("["+mod.abriv+"]");
 	console.debug(...p)
 }
+
 
 	function InitialiseMod({name,abriv,author}) {
 		console.log("[" + name + "] by " + author)
