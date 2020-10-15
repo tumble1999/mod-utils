@@ -42,7 +42,7 @@ function log(mod,...p) {
 			author
 		}
 		mod.log = log.bind(self,mod)
-		if(cardboard) {
+		if(typeof(cardboard)!=="undefined") {
 			mod = cardboard.register(mod.id,mod);
 		}
 		return mod;
