@@ -41,7 +41,7 @@ function log(mod,...p) {
 		console.log("[" + name + "] by " + author)
 		var mod = {
 			id:camelize(id||name),
-			abriv,
+			abriv:abriv||name.split(" ").map(word=>word[0].toUpperCase()).join(""),
 			name,
 			author
 		}
