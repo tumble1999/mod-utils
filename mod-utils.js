@@ -7,9 +7,9 @@ class TumbleMod {
 		console.log(`[${this.name}] by ${this.author}`);
 		if (!this.id) this.id = TumbleMod.camelize(this.name);
 		if (!this.abriv)
-			this.abriv = name
+			this.abriv = this.name
 				.split(" ")
-				.map((word) => word[0].toUpperCase())
+				.map(word => word[0].toUpperCase())
 				.join("");
 	}
 
