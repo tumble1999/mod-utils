@@ -24,7 +24,7 @@ var BCModUtils = {
 	},
 	InitialiseMod: function ({ id, name, abriv, author }) {
 		console.log(`[${name}] by ${author}`)
-		var mod = new TumbleMod({
+		var mod = {
 			id: id || camelize(name),
 			abriv: abriv || name.split(" ").map(word => word[0].toUpperCase()).join(""),
 			name,
@@ -33,7 +33,7 @@ var BCModUtils = {
 				p.unshift("[" + mod.abr, iv + "]");
 				console.debug(...p)
 			}
-		})
+		}
 		if (typeof (cardboard) != "undefined") {
 			mod.register = ()=>cardboard.register(mod.id, mod);
 		}
