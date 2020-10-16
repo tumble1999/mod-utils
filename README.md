@@ -6,7 +6,7 @@
 
 ```javascript
 
-var mod = BCModUtils.InitialiseMod({
+var mod = new TumbleMod({
 	name:"Test",
 	abriv:"T",
 	author:"A Human"
@@ -14,9 +14,9 @@ var mod = BCModUtils.InitialiseMod({
 
 mod.log("Hello World") //[T] Hello World
 
-BCModUtils.runIfDocLoaded(_=>{ //also runs if docuemnt already loaded. Returns a promise
+TumbleMod.runIfDocLoaded(_=>{ //also runs if docuemnt already loaded. Returns a promise
 mod.log("Document Loaded")
 })
 
-var text = BCModUtils.camelize("Text Face") //testFace
+var text = TumbleMod.camelize("Text Face") //testFace
 ```
