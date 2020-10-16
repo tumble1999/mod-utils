@@ -19,8 +19,7 @@ class TumbleMod {
 	}
 
 	register() {
-		if (typeof cardboard == "undefined")
-			throw "Cardbaord has to be available to register mods";
+		if (typeof cardboard == "undefined") throw "Cardbaord has to be available to register mods";
 		Object.assign(this, cardboard.register(this.id, this));
 		return this;
 	}
