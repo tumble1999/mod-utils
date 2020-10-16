@@ -23,8 +23,9 @@ var BCModUtils = {
 		return keys.reduce((obj, key, i) => (obj[key] = argv[i], obj), {})
 	},
 	InitialiseMod: function ({ id, name, abriv, author }) {
+		function TumbleMod(mod){Object.assign(this,mod)}
 		console.log(`[${name}] by ${author}`)
-		var mod = {
+		var mod = new TumbleMod({
 			id: id || camelize(name),
 			abriv: abriv || name.split(" ").map(word => word[0].toUpperCase()).join(""),
 			name,
@@ -33,10 +34,9 @@ var BCModUtils = {
 				p.unshift("[" + mod.abr, iv + "]");
 				console.debug(...p)
 			}
-		}
+		})
 		if (typeof (cardboard) != "undefined") {
 			mod = cardboard.register(mod.id, mod);
 		}
-		return mod;
 	}
 }
