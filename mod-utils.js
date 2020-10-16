@@ -34,5 +34,8 @@ var BCModUtils = {
 				console.debug(...p)
 			}
 		})
+		if (typeof (cardboard) != "undefined") {
+			mod.register = ()=>cardboard.register(mod.id, mod);
+		}
 	}
 }
