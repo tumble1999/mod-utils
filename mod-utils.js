@@ -1,4 +1,4 @@
-(function() {
+var TumbleMod = (function() {
 "use strict";
 class TumbleMod {
 	constructor(mod = {}) {
@@ -51,5 +51,5 @@ class TumbleMod {
 	}
 }
 
-window.TumbleMod = TumbleMod;
+return TumbleMod;
 })();
