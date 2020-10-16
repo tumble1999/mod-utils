@@ -1,3 +1,4 @@
+(function() {
 "use strict";
 class TumbleMod {
 	constructor(mod = {}) {
@@ -56,4 +57,5 @@ var BCModUtils = {
 	camelize: TumbleMod.camelize,
 	mapArguments: TumbleMod.mapArguments,
 	InitialiseMod: mod => new TumbleMod(mod)
-};
+}
+})();
