@@ -1,6 +1,5 @@
 "use strict";
 var BCModUtils = {
-
 	onDocumentLoaded: function () {
 		return new Promise((res, rej) => {
 			if (document.readyState === "complete") {
@@ -16,7 +15,6 @@ var BCModUtils = {
 			return index === 0 ? match.toLowerCase() : match.toUpperCase();
 		});
 	},
-
 	mapArguments: function (keys, argv, defaultKey) {
 		if (!Array.isArray(keys)) keys = Object.keys(keys);
 		defaultKey = defaultKey || keys[0]
@@ -31,8 +29,8 @@ var BCModUtils = {
 			abriv: abriv || name.split(" ").map(word => word[0].toUpperCase()).join(""),
 			name,
 			author,
-			log:function (...p) {
-				p.unshift("[" + mod.abr,iv + "]");
+			log: function (...p) {
+				p.unshift("[" + mod.abr, iv + "]");
 				console.debug(...p)
 			}
 		}
