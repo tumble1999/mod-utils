@@ -23,7 +23,6 @@ var BCModUtils = {
 		return keys.reduce((obj, key, i) => (obj[key] = argv[i], obj), {})
 	},
 	InitialiseMod: function ({ id, name, abriv, author }) {
-		function TumbleMod(mod){Object.assign(this,mod)}
 		console.log(`[${name}] by ${author}`)
 		var mod = new TumbleMod({
 			id: id || camelize(name),
@@ -35,8 +34,5 @@ var BCModUtils = {
 				console.debug(...p)
 			}
 		})
-		if (typeof (cardboard) != "undefined") {
-			mod = cardboard.register(mod.id, mod);
-		}
 	}
 }
