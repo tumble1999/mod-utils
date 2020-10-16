@@ -13,7 +13,7 @@ class TumbleMod {
 	}
 
 	log(...p) {
-		p.unshift(`[$this.abriv}]`);
+		p.unshift(`[${this.abriv}]`);
 		console.debug(...p);
 		return this;
 	}
