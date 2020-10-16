@@ -51,11 +51,5 @@ class TumbleMod {
 	}
 }
 
-//To Deprecate
-var BCModUtils = {
-	onDocumentLoaded: TumbleMod.onDocumentLoaded,
-	camelize: TumbleMod.camelize,
-	mapArguments: TumbleMod.mapArguments,
-	InitialiseMod: mod => new TumbleMod(mod)
-}
+window.TumbleMod = TumbleMod;
 })();
