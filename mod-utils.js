@@ -1,6 +1,23 @@
 "use strict";
-var BCModUtils = {
-	onDocumentLoaded: function () {
+class TumbleMod {
+	constructor(mod) {
+		if (mod.name && mod.author) throw "Mods require a name and an author";
+		Object.assign(this, mod)
+		console.log(`[${this.name}] by ${this.author}`);
+		if (!this.id) this.id = this.camelize(this.name)
+	}
+
+	log(...p) {
+		p.unshift(`[$this.abriv}]`);
+		console.debug(...p);
+	}
+
+	register() {
+		if (typeof (cardboard) == "undefined")  thow "Cardbaord has to be available to register mods"
+		Object.assign(this,cardboard.register(this.id, this));
+	}
+
+	static onDocumentLoaded() {
 		return new Promise((res, rej) => {
 			if (document.readyState === "complete") {
 				res();
@@ -8,35 +25,29 @@ var BCModUtils = {
 				window.addEventListener("load", res)
 			}
 		})
-	},
-	camelize: function (str) {
+
+	}
+
+	static camelize(str) {
 		return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
 			if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
 			return index === 0 ? match.toLowerCase() : match.toUpperCase();
 		});
-	},
-	mapArguments: function (keys, argv, defaultKey) {
+	}
+
+	static mapArguments(keys, argv, defaultKey) {
 		if (!Array.isArray(keys)) keys = Object.keys(keys);
 		defaultKey = defaultKey || keys[0]
 		if (!Array.isArray(argv)) return argv;
 		if (argv.length == 1) return { [defaultKey]: argv[0] }
 		return keys.reduce((obj, key, i) => (obj[key] = argv[i], obj), {})
-	},
-	InitialiseMod: function ({ id, name, abriv, author }) {
-		console.log(`[${name}] by ${author}`);
-		var mod = {
-			id: id || this.camelize(name),
-			abriv: abriv || name.split(" ").map(word => word[0].toUpperCase()).join(""),
-			name,
-			author,
-			log: function (...p) {
-				p.unshift("[" + mod.abr, iv + "]");
-				console.debug(...p);
-			}
-		};
-		if (typeof (cardboard) != "undefined") {
-			mod.register = () => mod = cardboard.register(mod.id, mod);
-		}
-		return mod
-	},
+	}
+}
+
+//To Deprecate
+var BCModUtils = {
+	onDocumentLoaded: TumbleMod.onDocumentLoaded,
+	camelize: TumbleMod.camelize,
+	mapArguments: TumbleMod.mapArguments,
+	InitialiseMod: mod=>new TumbleMod(mod)
 }
