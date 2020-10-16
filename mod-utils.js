@@ -25,7 +25,7 @@ var BCModUtils = {
 	InitialiseMod: function ({ id, name, abriv, author }) {
 		console.log(`[${name}] by ${author}`)
 		var mod = {
-			id: id || camelize(name),
+			id: id || this.camelize(name),
 			abriv: abriv || name.split(" ").map(word => word[0].toUpperCase()).join(""),
 			name,
 			author,
