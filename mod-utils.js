@@ -35,7 +35,7 @@ var BCModUtils = {
 			}
 		};
 		if (typeof (cardboard) != "undefined") {
-			mod.register = () => cardboard.register(mod.id, mod);
+			mod.register = () => mod = cardboard.register(mod.id, mod);
 		}
 		return mod
 	},
