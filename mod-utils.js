@@ -23,7 +23,7 @@ var BCModUtils = {
 		return keys.reduce((obj, key, i) => (obj[key] = argv[i], obj), {})
 	},
 	InitialiseMod: function ({ id, name, abriv, author }) {
-		console.log(`[${name}] by ${author}`)
+		console.log(`[${name}] by ${author}`);
 		var mod = {
 			id: id || this.camelize(name),
 			abriv: abriv || name.split(" ").map(word => word[0].toUpperCase()).join(""),
@@ -31,11 +31,12 @@ var BCModUtils = {
 			author,
 			log: function (...p) {
 				p.unshift("[" + mod.abr, iv + "]");
-				console.debug(...p)
+				console.debug(...p);
 			}
-		}
+		};
 		if (typeof (cardboard) != "undefined") {
-			mod.register = ()=>cardboard.register(mod.id, mod);
+			mod.register = () => cardboard.register(mod.id, mod);
 		}
-	}
+		return mod
+	},
 }
