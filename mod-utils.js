@@ -1,55 +1,49 @@
-var TumbleMod = (function() {
-"use strict";
-class TumbleMod {
-	constructor(mod = {}) {
-		if (!mod.name || !mod.author) throw "Mods require a name and an author";
-		Object.assign(this, mod);
-		console.log(`[${this.name}] by ${this.author}`);
-		if (!this.id) this.id = TumbleMod.camelize(this.name);
-		if (!this.abriv)
-			this.abriv = this.name
-				.split(" ")
-				.map(word => word[0].toUpperCase())
-				.join("");
-	}
+let TumbleMod;
+(function () {
+	'use strict';
+	TumbleMod = class {
+		constructor(mod = {}) {
+			Object.assign(this, mod);
+			this.GM_info = GM_info;
+			this.mod = GM_info.script;
+			console.log(`[${this.name}] by ${this.author}`);
+			if (!this.id) this.id = TumbleMod.camelize(this.name);
+			if (!this.abriv)
+				this.abriv = this.name
+					.split(" ")
+					.map(word => word[0].toUpperCase())
+					.join("");
+			if (typeof cardboard != "undefined")
+				cardboard.register(this.id, this, this.cardboard, GM_info);
+		}
 
-	log(...p) {
-		p.unshift(`[${this.abriv}]`);
-		console.debug(...p);
-		return this;
-	}
+		log(...p) {
+			console.debug(`[${this.abriv}]`, ...p);
+			return p[0];
+		}
 
-	register() {
-		if (typeof cardboard == "undefined") throw "Cardbaord has to be available to register mods";
-		Object.assign(this, cardboard.register(this.id, this));
-		return this;
-	}
+		static onDocumentLoaded() {
+			return new Promise((res, rej) => {
+				if (document.readyState == "complete")
+					res(true);
+				else
+					window.addEventListener("load", _ => res(false));
+			});
+		}
 
-	static onDocumentLoaded() {
-		return new Promise((res, rej) => {
-			if (document.readyState === "complete") {
-				res();
-			} else {
-				window.addEventListener("load", res);
-			}
-		});
-	}
+		static camelize(str) {
+			return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
+				if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+				return index === 0 ? match.toLowerCase() : match.toUpperCase();
+			});
+		}
 
-	static camelize(str) {
-		return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
-			if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
-			return index === 0 ? match.toLowerCase() : match.toUpperCase();
-		});
-	}
-
-	static mapArguments(keys, argv, defaultKey) {
-		if (!Array.isArray(keys)) keys = Object.keys(keys);
-		defaultKey = defaultKey || keys[0];
-		if (!Array.isArray(argv)) return argv;
-		if (argv.length == 1) return { [defaultKey]: argv[0] };
-		return keys.reduce((obj, key, i) => ((obj[key] = argv[i]), obj), {});
-	}
-}
-
-return TumbleMod;
+		static mapArguments(keys, argv, defaultKey) {
+			if (!Array.isArray(keys)) keys = Object.keys(keys);
+			defaultKey = defaultKey || keys[0];
+			if (!Array.isArray(argv)) return argv;
+			if (argv.length == 1) return { [defaultKey]: argv[0] };
+			return keys.reduce((obj, key, i) => ((obj[key] = argv[i]), obj), {});
+		}
+	};
 })();
