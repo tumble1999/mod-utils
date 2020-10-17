@@ -13,7 +13,7 @@ let mod = new TumbleMod({
 
 mod.log("Hello World") // [TM] Hello World
 
-TumbleMod.onDocumentLoaded().then( alreadyLoaded => { // also runs if document already loaded. Returns a promise
+TumbleMod.onDocumentLoaded().then(alreadyLoaded => { // also runs if document already loaded. Returns a promise
 	if (alreadyLoaded)
 		mod.log("Document was already loaded") // [TM] Document was already loaded
 	else
