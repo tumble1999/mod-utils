@@ -5,7 +5,7 @@
 ```
 
 ```js
-let mod = new TumbleMod({
+const mod = new TumbleMod({
 	id: "tumbleMod", // code-friendly version of name
 	abriv: "TM", // abbreviation for mod.log
 	cardboard: true, // if this mod requires cardboard
