@@ -1,22 +1,24 @@
 # Mod Utils
 
-```javascript
+```js
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
 ```
 
-```javascript
-
-var mod = new TumbleMod({
-	name:"Test",
-	abriv:"T",
-	author:"A Human"
+```js
+let mod = new TumbleMod({
+	id: "tumbleMod", // code-friendly version of name
+	abriv: "TM", // abbreviation for mod.log
+	cardboard: true, // if this mod requires cardboard
 })
 
-mod.log("Hello World") //[T] Hello World
+mod.log("Hello World") // [TM] Hello World
 
-TumbleMod.runIfDocLoaded(_=>{ //also runs if docuemnt already loaded. Returns a promise
-mod.log("Document Loaded")
+TumbleMod.onDocumentLoaded().then( alreadyLoaded => { // also runs if document already loaded. Returns a promise
+	if (alreadyLoaded)
+		mod.log("Document was already loaded") // [TM] Document was already loaded
+	else
+		mod.log("Document loaded") // [TM] Document loaded
 })
 
-var text = TumbleMod.camelize("Text Face") //testFace
+let text = TumbleMod.camelize("Text Face") // textFace
 ```
