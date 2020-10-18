@@ -13,8 +13,12 @@ let TumbleMod;
 					.split(" ")
 					.map(word => word[0].toUpperCase())
 					.join("");
+
+			const cRegister = _ => cardboard.register(this.id, this, this.cardboard, GM_info);
 			if (typeof cardboard != "undefined")
-				cardboard.register(this.id, this, this.cardboard, GM_info);
+				window.addEventListener('cardboardLoaded', cRegister);
+			else
+				cRegister();
 		}
 
 		log(...p) {
