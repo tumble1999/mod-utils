@@ -3,9 +3,8 @@ let TumbleMod;
 	'use strict';
 	TumbleMod = class {
 		constructor(mod = {}) {
-			Object.assign(this, mod);
 			this.GM_info = GM_info;
-			this.mod = GM_info.script;
+			Object.assign(this, mod, GM_info.script);
 			console.log(`[${this.name}] by ${this.author}`);
 			if (!this.id) this.id = TumbleMod.camelize(this.name);
 			if (!this.abriv)
