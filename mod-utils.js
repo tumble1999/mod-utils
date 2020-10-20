@@ -14,7 +14,7 @@ let TumbleMod;
 					.join("");
 
 			const cRegister = _ => cardboard.register(this.id, this, this.cardboard, GM_info);
-			if (typeof cardboard != "undefined")
+			if (typeof cardboard == "undefined")
 				window.addEventListener('cardboardLoaded', cRegister);
 			else
 				cRegister();
